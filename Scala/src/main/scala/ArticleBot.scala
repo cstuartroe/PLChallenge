@@ -7,7 +7,7 @@ class ArticleBot(val name: String) {
 
   def scrape() : Unit = {
     val content = getContent
-    val link_re = "href=\"/wiki/([A-Za-z0-9_\\(\\):]+)".r
+    val link_re = "href=\"/wiki/([^\"#]+)".r
 
     for (m <- link_re.findAllIn(content).matchData) links = m.group(1) :: links
   }

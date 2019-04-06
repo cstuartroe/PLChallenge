@@ -1,3 +1,5 @@
+import java.net.URLDecoder
+
 class StringBST {
   private var root: StringBSTNode = _
   private var size: Int = 0
@@ -24,7 +26,7 @@ class StringBST {
 
   def getSize: Int = size
 
-  def printout(): Unit = root.printout()
+  def printout(): String = root.printout()
 }
 
 class StringBSTNode (val s: String) {
@@ -67,9 +69,11 @@ class StringBSTNode (val s: String) {
     }
   }
 
-  def printout(): Unit = {
-    if (left != null) left.printout()
-    println(s)
-    if (right != null) right.printout()
+  def printout(): String = {
+    var out = ""
+    if (left != null) out += left.printout()
+    out += URLDecoder.decode(s, "utf-8").replace("_"," ") + "\n"
+    if (right != null) out += right.printout()
+    out
   }
 }

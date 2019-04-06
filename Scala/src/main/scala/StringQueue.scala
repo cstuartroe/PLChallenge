@@ -1,11 +1,21 @@
-class StringQueue(s: String) {
-  private var front = new StringQueueNode(s)
-  private var back = front
-  private var size: Int = 1
+class StringQueue() {
+  private var front: StringQueueNode = _
+  private var back: StringQueueNode = _
+  private var size: Int = 0
+
+  def this(s: String) {
+    this
+    this.enqueue(s)
+  }
 
   def enqueue(s: String): Unit = {
-    back.next = new StringQueueNode(s)
-    back = back.next
+    if (front == null) {
+      front = new StringQueueNode(s)
+      back = front
+    } else {
+      back.next = new StringQueueNode(s)
+      back = back.next
+    }
     size += 1
   }
 
